@@ -1,0 +1,36 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: Morpheus Mock API for Asgard testing
+
+Parameters: 
+  MorpheusApiAuthToken:
+    Type: String
+    Description: Morpheus auth token
+
+  TagOwnerName:
+    Type: String
+    Default: "sethm"
+    
+  TagMapMigratedId:
+    Type: String
+    Default: "d-server-01twh90e4su4lm"
+    Description: "Map Migrated ID if any"    
+
+Resources:
+
+  MorpheusMockLayer:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: ./layer/nodejs/template.yaml
+
+  MorpheusMockFunction:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: ./functions/main/template.yaml
+      Parameters: 
+        SharedLayerArn: !GetAtt 
+          - MorpheusMockLayer
+          - Outputs.LayerArn
+
+
+            

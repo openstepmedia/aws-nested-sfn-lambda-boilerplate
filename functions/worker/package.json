@@ -1,0 +1,10 @@
+{
+    "name": "aws-nested-sfn-lambda-demo-app",
+    "version": "0.0.1",
+    "description": "Sample stepfunction boilerplate",
+    "main": "app.js",
+    "repository": "",
+    "author": "seth@openstepmedia.com",
+    "dependencies": {},
+    "devDependencies": {}
+}
