@@ -11,7 +11,7 @@ export class Base {
     }
 
     async process() {
-        console.debug('customer is making purchase');
+        console.debug('Base process()');
     }
 
 }

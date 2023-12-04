@@ -4,45 +4,62 @@
     "description": "",
     "main": "app.js",
     "scripts": {
-      "test": "node_modules/.bin/jest --coverage --verbose",
-      "test-only": "node_modules/.bin/jest ./*.test.js --verbose",
-      "test-watch": "node_modules/.bin/jest --watch ./*.test.js --verbose",
-      "lint": "eslint './{,!(node_modules)/**/}*.js'"
+        "test": "jest  --coverage --verbose",
+        "test-only": "node_modules/.bin/jest ./*.test.js --verbose",
+        "test-watch": "node_modules/.bin/jest --watch ./*.test.js --verbose",
+        "lint": "eslint './{,!(node_modules)/**/}*.js'"
     },
     "repository": {
-      "type": "git",
-      "url": "git+https://github.com/therecordxchange/trx-morpheus-mock.git"
+        "type": "git",
+        "url": "git+https://github.com/therecordxchange/trx-morpheus-mock.git"
     },
     "author": "seth@openstepmedia.com",
     "license": "ISC",
     "bugs": {
-      "url": "https://github.com/therecordxchange/trx-morpheus-mock/issues"
+        "url": "https://github.com/therecordxchange/trx-morpheus-mock/issues"
     },
     "homepage": "https://github.com/therecordxchange/trx-morpheus-mock#readme",
-    "dependencies": {},  
+    "dependencies": {
+        "@babel/preset-env": "^7.23.5"
+    },
     "devDependencies": {
-      "aws-sdk": "^2.1304.0",
-      "axios": "^1.2.5",
-      "dotenv": "^16.0.3",
-      "jest": "^29.4.1"
+        "aws-sdk": "^2.1304.0",
+        "axios": "^1.2.5",
+        "dotenv": "^16.0.3",
+        "jest": "^29.4.1"
     },
     "jest": {
-      "setupFiles": [
-        "dotenv/config"
-      ],
-      "testMatch": [
-        "**/?(*.)+(spec|test|e2e).js?(x)"
-      ],
-      "testPathIgnorePatterns": [
-        "/node_modules/",
-        "/__tests__/"
-      ],
-      "modulePaths": [
-        "<rootDir>/layer/nodejs/",
-        "<rootDir>/layer/nodejs/node_modules/"
-      ],
-      "modulePathIgnorePatterns": [
-        ".aws-sam"
-      ]
+        "setupFiles": [
+            "dotenv/config"
+        ],
+        "testMatch": [
+            "**/?(*.)+(spec|test|e2e)\\.?js?(x)"
+        ],
+        "testPathIgnorePatterns": [
+            "/node_modules/",
+            "/__tests__/"
+        ],
+        "transform": {
+            "^.+\\.m?js$": "babel-jest"
+        },
+        "transformIgnorePatterns": [
+            "\\.pnp\\.[^\\/]+$"
+        ],
+        "moduleFileExtensions": [
+            "mjs",
+            "js",
+            "jsx",
+            "ts",
+            "tsx",
+            "json",
+            "node"
+        ],
+        "modulePaths": [
+            "<rootDir>/layers/shared/nodejs/",
+            "<rootDir>/layers/shared/nodejs/node_modules/"
+        ],
+        "modulePathIgnorePatterns": [
+            ".aws-sam"
+        ]
     }
-  }
+}

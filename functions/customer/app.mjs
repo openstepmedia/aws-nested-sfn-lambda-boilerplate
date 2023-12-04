@@ -1,4 +1,4 @@
-'use strict';
+import * as fs from 'fs';
 
 /**
  * 
@@ -6,14 +6,19 @@
  * @param {*} context 
  * @returns 
  */
+
+import * as Logger from 'lambda-log';
+import { Return } from './states/opReturn.mjs';
+import { Purchase } from './states/opPurchase.mjs';
+import { CustomerError } from './errors.mjs';
+
 export const handler = async (event, context) => {
 
-    let response = {};
+  let instance = null;
+  let response = {};
 
     console.log('Event: ', event);
     console.log('Context:', context);
-
-    // event.operation must be set:
 
     switch (event.operation) {
         case 'purchase':
@@ -26,6 +31,11 @@ export const handler = async (event, context) => {
           break;
       }
   
+      if (!instance) {
+        Logger.error(event);
+        throw new CustomerError(`${event.operation} not supported`);
+      }
+
       await instance.process();    
 
 
